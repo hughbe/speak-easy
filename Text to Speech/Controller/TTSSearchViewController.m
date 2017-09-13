@@ -74,7 +74,7 @@
         //Something bad has happened, so lets notify the user
         self.errorNoticeView = [WBErrorNoticeView errorNoticeInView:self.view title:@"Invalid Data" message:@"Please try again later."];
         [self.errorNoticeView show];
-        self.message = @"An Error Occured";
+        self.message = NSLocalizedString(@"An Error Occurred", nil);
     }
     else if ([formattedStr isEqualToString:@"NU"]) {
         //Checks the scenario where we have no users
@@ -116,7 +116,7 @@
     //Then tell the user that something went wrong
     self.errorNoticeView = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
     [self.errorNoticeView show];
-    self.message = @"An Error Occured";
+    self.message = NSLocalizedString(@"An Error Occurred", nil);
     [self.tableView reloadData];
 }
 
@@ -157,7 +157,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.searchBar resignFirstResponder];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"toProfile" sender:@[[NSNumber numberWithInteger:cell.tag], cell.textLabel.text]];
+    [self performSegueWithIdentifier:@"toProfile" sender:@[@(cell.tag), cell.textLabel.text]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

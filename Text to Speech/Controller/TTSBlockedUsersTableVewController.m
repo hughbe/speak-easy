@@ -13,7 +13,6 @@
 #import "MBProgressHUD.h"
 
 @implementation TTSBlockedUsersTableVewController
-NSIndexPath *unblockingIndexPath;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,7 +46,7 @@ NSIndexPath *unblockingIndexPath;
         //If not, notify the user of an unknown error
         self.errorNoticeView = [WBErrorNoticeView errorNoticeInView:self.view title:@"Unknown error" message:@"Please try again later or check your internet connection"];
         [self.errorNoticeView show];
-        self.message = @"An Error Occured";
+        self.message = NSLocalizedString(@"An Error Occurred", nil);
     }
 }
 
@@ -66,13 +65,13 @@ NSIndexPath *unblockingIndexPath;
     //Check what our data means
     if ([formattedStr isEqualToString:@"i"] || [formattedStr isEqualToString:@""] || [formattedStr isEqualToString:@"mE"]) {
         //Something bad has happened, so lets notify the user
-        self.errorNoticeView = [WBErrorNoticeView errorNoticeInView:self.view title:@"Invalid Data" message:@"Please try again later."];
+        self.errorNoticeView = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Invalid Data", nil) message:NSLocalizedString(@"Try Again Later", nil)];
         [self.errorNoticeView show];
-        self.message = @"An Error Occured";
+        self.message = NSLocalizedString(@"An Error Occurred", nil);
     }
     else if ([formattedStr isEqualToString:@"NBU"]) {
         //Checks the scenario where we have no users
-        self.message = @"No Blocked Users found";
+        self.message = NSLocalizedString(@"No Blocked Users found", nil);
     }
     else if ([formattedStr isEqualToString:@"UB"]) {
         [self update];
@@ -113,7 +112,7 @@ NSIndexPath *unblockingIndexPath;
     //Then tell the user that something went wrong
     self.errorNoticeView = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
     [self.errorNoticeView show];
-    self.message = @"An Error Occured";
+    self.message = NSLocalizedString(@"An Error Occurred", nil);
     [self.tableView reloadData];
 }
 
@@ -189,7 +188,7 @@ NSIndexPath *unblockingIndexPath;
         //If not, notify the user of an unknown error
         self.errorNoticeView = [WBErrorNoticeView errorNoticeInView:self.view title:@"Unknown error" message:@"Please try again later or check your internet connection"];
         [self.errorNoticeView show];
-        self.message = @"An Error Occured";
+        self.message = NSLocalizedString(@"An Error Occurred", nil);
     }
 }
 @end

@@ -170,7 +170,7 @@ self.textView.attributedText=mutableAttributedString;*/
         reportStringParam = self.string;
     }
 
-    NSString *paramString = [NSString stringWithFormat:@"reporterID=%ld&reportType=%@&reportedID=	%ld&reportReason=%@&reportString=%@&block=%@", (long) [TTSBrain getUserID], reportTypeParam, (long) self.ID, self.defaultSource[(NSUInteger) [self.picker selectedRowInComponent:0]], reportStringParam, [NSNumber numberWithBool:self.block.checked]];
+    NSString *paramString = [NSString stringWithFormat:@"reporterID=%ld&reportType=%@&reportedID=	%ld&reportReason=%@&reportString=%@&block=%@", (long) [TTSBrain getUserID], reportTypeParam, (long) self.ID, self.defaultSource[(NSUInteger) [self.picker selectedRowInComponent:0]], reportStringParam, @(self.block.checked)];
 
     NSData *data = [paramString dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:data];

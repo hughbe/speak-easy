@@ -465,7 +465,7 @@ BOOL validDeletePassword;
     }
     else if ([formattedStr isEqualToString:@"nSU"]) {
         //No Such User - id sent is not on record
-        errorNoticeView = [WBErrorNoticeView errorNoticeInView:self.tableView title:@"No Such User" message:@"AN error occured - Error: nSU invalid userID for `id`='_!'"];
+        errorNoticeView = [WBErrorNoticeView errorNoticeInView:self.tableView title:@"No Such User" message:NSLocalizedString(@"An Error Occurred", nil)];
         [errorNoticeView show];
     }
     else if ([formattedStr isEqualToString:@"cE"]) {

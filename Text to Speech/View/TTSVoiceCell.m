@@ -145,7 +145,7 @@
                 NSString *text = [TTSBrain getStringForKey:@"text" defaultValue:@""];
 
                 //Format: ID, Language ID, speed, pitch and text
-                self.presetArray = [[NSMutableArray alloc] initWithObjects:idValue, languageID, speedValue, pitchValue, text, nil];
+                self.presetArray = [@[idValue, languageID, speedValue, pitchValue, text] mutableCopy];
             }
             //We're sharing a saved preset
             [self.motherController performSegueWithIdentifier:@"share" sender:self.presetArray];
@@ -219,7 +219,7 @@
         if (buttonIndex == 0) {
             //We're making this our current preset
             //Firstly, get the current preset that we're swapping with
-            NSArray *currentPreset = @[[TTSBrain getNewIDAndUpdate:YES], [TTSBrain getStringForKey:@"language" defaultValue:@"en-GB"], [NSNumber numberWithFloat:[TTSBrain getFloatForKey:@"rate" defaultValue:AVSpeechUtteranceDefaultSpeechRate]], [NSNumber numberWithFloat:[TTSBrain getFloatForKey:@"pitch" defaultValue:0.50f]], [TTSBrain getStringForKey:@"defaultText" defaultValue:@"Not Set"]];
+            NSArray *currentPreset = @[[TTSBrain getNewIDAndUpdate:YES], [TTSBrain getStringForKey:@"language" defaultValue:@"en-GB"], @([TTSBrain getFloatForKey:@"rate" defaultValue:AVSpeechUtteranceDefaultSpeechRate]), @([TTSBrain getFloatForKey:@"pitch" defaultValue:0.50f]), [TTSBrain getStringForKey:@"defaultText" defaultValue:@"Not Set"]];
 
             //Now load our list of custom presets
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -319,9 +319,9 @@
             NSNumber *newDownloadNumber = @(newDownloadInteger);
 
             //Update our current preset number in our preset array
-            [self.presetArray setObject:newDownloadNumber atIndexedSubscript:6];
+            self.presetArray[6] = newDownloadNumber;
             //Update the main controller's presets array and reload the controller's tableView
-            [self.motherController.presets setObject:self.presetArray atIndexedSubscript:self.row];
+            self.motherController.presets[self.row] = self.presetArray;
             [self.motherController reloadData];
         }
         //ADDING OF PRESET OCCURS HERE
@@ -332,7 +332,7 @@
         for (NSInteger i = 0; i <= 3; i++)
             [adaptedPresetArray removeLastObject];
 
-        [adaptedPresetArray setObject:[TTSBrain getNewIDAndUpdate:YES] atIndexedSubscript:0];
+        adaptedPresetArray[0] = [TTSBrain getNewIDAndUpdate:YES];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSMutableArray *installedPresets = [[TTSBrain getArrayForKey:TTSPresetKey] mutableCopy];
         [installedPresets addObject:adaptedPresetArray];
@@ -355,7 +355,7 @@
         self.presetArray[7] = newRatingNumber;
         self.presetArray[9] = @0;
         //Update the main controller's presets array and reload the controller's tableView
-        [self.motherController.presets setObject:self.presetArray atIndexedSubscript:self.row];
+        self.motherController.presets[self.row] = self.presetArray;
         [self.motherController reloadData];
     }
     else if ([str isEqualToString:@"nR"]) {

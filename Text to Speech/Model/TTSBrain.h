@@ -9,10 +9,10 @@
 @import Social;
 @import StoreKit;
 @import AVFoundation;
+#import <Foundation/Foundation.h>
 
 #define TTSPresetKey @"presets"
 #define TTSDatabaseSalt @"makichich1"
-#define IS_WIDESCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 typedef NS_ENUM(NSInteger, TTSPresetInfoType)
 {

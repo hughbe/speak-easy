@@ -20,7 +20,6 @@ CGRect adapted; //Shown
 CGRect adaptedTextView; //Squeezed frame
 CGRect editingTextToSpeakFrame; //Normal editing frame
 CGRect originalTextToSpeakFrame; //Non editing frame
-BOOL navigating;
 WBErrorNoticeView *errorNotice;
 WBSuccessNoticeView *successNotice;
 

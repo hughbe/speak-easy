@@ -619,7 +619,7 @@ NSInteger const toIncrementEachLoad = 10;
             cell.speedLabel.text = [NSString stringWithFormat:@"%.02f", rate];
             cell.pitchLabel.text = [NSString stringWithFormat:@"%.02f", pitch];
             [cell.defaultTextLabel setText:defaultText];
-            cell.presetArray = [@[cell.languageID, [NSNumber numberWithFloat:rate], [NSNumber numberWithFloat:pitch], defaultText] mutableCopy];
+            cell.presetArray = [@[cell.languageID, @(rate), @(pitch), defaultText] mutableCopy];
         }
     }
     else if ((NSUInteger) indexPath.row == self.presets.count) {
@@ -786,7 +786,7 @@ NSInteger const toIncrementEachLoad = 10;
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == actionSheet.destructiveButtonIndex&&self.ID != [TTSBrain getUserID]) {
         //Reporting
-        [self performSegueWithIdentifier:@"toReport" sender:@[[NSNumber numberWithInteger:self.ID], self.userName, @"user"]];
+        [self performSegueWithIdentifier:@"toReport" sender:@[@(self.ID), self.userName, @"user"]];
     }
     else if (buttonIndex == 1 && self.ID != [TTSBrain getUserID]) {
         //Blocking
@@ -847,7 +847,7 @@ NSInteger const toIncrementEachLoad = 10;
             type = @"U";
         }
         
-        [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(showShareOptions:) userInfo:@[[NSNumber numberWithInteger:self.ID], type] repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(showShareOptions:) userInfo:@[@(self.ID), type] repeats:NO];
     }
 }
 

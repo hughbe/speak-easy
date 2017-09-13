@@ -10,8 +10,6 @@
 
 @implementation TTSSpeechUtterance
 
-@synthesize speechString;
-
 - (instancetype)initWithString:(NSString *)string {
     self = [super initWithString:string];
     return self;

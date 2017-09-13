@@ -10,7 +10,6 @@
 #import "WBErrorNoticeView.h"
 #import "WBSuccessNoticeView.h"
 #import "TTSHomeViewController.h"
-#import "TTSInfoViewController.h"
 
 @interface TTSShareViewController()
 
